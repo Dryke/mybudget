@@ -58,7 +58,8 @@
 
   foreach($queries as $query)
   {
-    $mysqli->query($query);
+    $db = new Db();
+    $db->execute($query);
   }
 
   echo 'ok';
