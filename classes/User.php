@@ -11,7 +11,7 @@
       $db = new Db();
       if(User::nameAvailable($this->name))
       {
-        if($db->execute('INSERT INTO user(name, password, date_add) VALUES("'.$this->name.'", "'.$this->password.'", NOw())'))
+        if($db->execute('INSERT INTO user(name, password, date_add) VALUES("'.$this->name.'", "'.$this->password.'", NOW())'))
         {
           return true;
         }
