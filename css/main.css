@@ -11,3 +11,7 @@ input:-webkit-autofill {
 h1 {
   margin-bottom: 20px;
 }
+
+body .navbar {
+  border-radius: 0;
+}
