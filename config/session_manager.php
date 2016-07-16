@@ -1,9 +1,9 @@
 <?php
   session_start();
 
-  if(isset($_SESSION['user_id']))
+  if(isset($_SESSION['id_user']))
   {
-    $user_id = $_SESSION['user_id'];
+    $id_user = $_SESSION['id_user'];
     $is_logged = true;
   }
   else

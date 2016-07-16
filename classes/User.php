@@ -42,9 +42,9 @@
     public function login()
     {
       $db = new Db();
-      if($user_id = $db->getRow('SELECT id FROM user WHERE name = "'.$this->name.'" AND password = "'.$this->password.'"'))
+      if($user = $db->getRow('SELECT id FROM user WHERE name = "'.$this->name.'" AND password = "'.$this->password.'"'))
       {
-        return $user_id;
+        return (int) $user->id;
       }
       else
       {

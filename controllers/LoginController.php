@@ -1,18 +1,18 @@
 <?php
-  $bad_login = 0;
+  $bad_login = false;
   if(isset($_POST['username']) && isset($_POST['password']))
   {
     $user = new User();
     $user->name = $_POST['username'];
     $user->password = $_POST['password'];
-    if($user_id = $user->login())
+    if($id_user = $user->login())
     {
-      $_SESSION['user_id'] = $user_id;
+      $_SESSION['id_user'] = $id_user;
       header('Location: index.php?page=home');
     }
     else
     {
-      $bad_login = 1;
+      $bad_login = true;
     }
   }
 ?>

@@ -24,14 +24,14 @@
     public function execute($query)
     {
       $mysqli = $this->connect();
-      if(!$mysqli->query($query))
+      if($mysqli->query($query))
       {
-        Db::showError($mysqli->error);
-        return false;
+        return true;
       }
       else
       {
-        return true;
+        Db::showError($mysqli->error);
+        return false;
       }
     }
 
@@ -62,6 +62,25 @@
         {
           return false;
         }
+      }
+      else
+      {
+        Db::showError($mysqli->error);
+        return false;
+      }
+    }
+
+    public function getRows($query)
+    {
+      $mysqli = $this->connect();
+      if($result = $mysqli->query($query))
+      {
+        $rows = array();
+        while($row = $result->fetch_assoc())
+        {
+          $rows[] = $row;
+        }
+        return $rows;
       }
       else
       {

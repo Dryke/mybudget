@@ -20,7 +20,7 @@
 
   $queries[] = 'CREATE TABLE category(
     id INT NOT NULL auto_increment,
-    id_parent INT DEFAULT 1,
+    id_parent INT DEFAULT 0,
     name VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
   )
@@ -30,8 +30,8 @@
 
   $queries[] = 'CREATE TABLE transaction(
     id INT NOT NULL auto_increment,
-    user_id INT NOT NULL,
-    category_id INT NOT NULL,
+    id_user INT NOT NULL,
+    id_category INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     amount FLOAT(12,2) DEFAULT 0,
     sign INT(1) DEFAULT 0,
@@ -44,8 +44,8 @@
 
   $queries[] = 'CREATE TABLE transaction_auto(
     id INT NOT NULL auto_increment,
-    user_id INT NOT NULL,
-    category_id INT NOT NULL,
+    id_user INT NOT NULL,
+    id_category INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     amount FLOAT(12,2) DEFAULT 0,
     sign INT(1) DEFAULT 0,

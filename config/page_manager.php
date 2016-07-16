@@ -8,6 +8,14 @@
   if($is_logged)
   {
     $pages[] = array(
+      'name' => 'Category',
+      'link' => 'category'
+    );
+    $pages[] = array(
+      'name' => 'Transaction',
+      'link' => 'transaction'
+    );
+    $pages[] = array(
       'name' => 'Logout',
       'link' => 'logout'
     );
