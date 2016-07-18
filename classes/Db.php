@@ -93,5 +93,65 @@
     {
       die('<p>Error mysqli : '.$error.'</p>');
     }
+
+    public function getDump()
+    {
+      $mysqli = $this->connect();
+      $tables = $mysqli->query('SHOW TABLES');
+      while($row = $tables->fetch_row())
+      {
+        $target_tables[] = $row[0];
+      }
+
+      foreach($target_tables as $table)
+      {
+        $result = $mysqli->query('SELECT * FROM '.$table);
+        $fields_count = $result->field_count;
+        $rows_num = $mysqli->affected_rows;
+        $res =   $mysqli->query('SHOW CREATE TABLE '.$table);
+        $table_line = $res->fetch_row();
+        $content = (!isset($content) ?  '' : $content) . "\n\n".$table_line[1].";\n\n";
+
+        for($i = 0, $st_counter = 0; $i < $fields_count; $i++, $st_counter=0)
+        {
+          while($row = $result->fetch_row())
+          {
+            if($st_counter%100 == 0 || $st_counter == 0 )
+            {
+              $content .= "\nINSERT INTO ".$table." VALUES";
+            }
+            $content .= "\n(";
+            for($j = 0; $j < $fields_count; $j++)
+            {
+              $row[$j] = str_replace("\n","\\n", addslashes($row[$j]));
+              if(isset($row[$j]))
+              {
+                $content .= '"'.$row[$j].'"' ;
+              }
+              else
+              {
+                $content .= '""';
+              }
+              if($j < ($fields_count-1))
+              {
+                $content.= ',';
+              }
+            }
+            $content .=")";
+            if((($st_counter + 1) % 100 == 0 && $st_counter != 0) || $st_counter + 1 == $rows_num)
+            {
+              $content .= ";";
+            }
+            else
+            {
+              $content .= ",";
+            }
+            $st_counter++;
+          }
+        }
+        $content .="\n\n";
+      }
+      return $content;
+    }
   }
 ?>

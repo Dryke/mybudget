@@ -1,6 +1,6 @@
 <?php
   $transaction_add = false;
-  $categories = Category::getCategories();
+  $categories = Category::getTree();
 
   if(isset($_POST['submitAddTransaction']))
   {

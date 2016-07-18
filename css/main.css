@@ -10,8 +10,27 @@ input:-webkit-autofill {
 
 h1 {
   margin-bottom: 20px;
+  margin-top: 0;
 }
 
 body .navbar {
   border-radius: 0;
+  margin-bottom: 50px;
+}
+
+.category_remove span {
+  color: #ff0000;
+}
+
+.category_remove button {
+  border: none;
+  background: none;
+}
+
+.category_remove {
+  display: inline-block;
+}
+
+ul {
+  list-style-type: square;
 }

@@ -33,6 +33,11 @@
     );
   }
 
+  $pages[] = array(
+    'name' => 'Export',
+    'link' => 'export'
+  );
+
   if(isset($_GET['page']))
   {
     $actual_page = $_GET['page'];
