@@ -1,0 +1,10 @@
+{% if notification != 0 %}
+    {% include 'notification.html' %}
+{% endif %}
+<form class="col-md-3" method="POST">
+    <label for="username">Username</label>
+    <input name="username" type="text" id="username" class="form-control" placeholder="Username" required="true" autocomplete="off"><br />
+    <label for="password">Password</label>
+    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required="true" autocomplete="off"><br />
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>
