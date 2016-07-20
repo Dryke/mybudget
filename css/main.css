@@ -1,36 +1,36 @@
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
 
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
 h1 {
-  margin-bottom: 20px;
-  margin-top: 0;
+    margin-bottom: 20px;
+    margin-top: 0;
 }
 
 body .navbar {
-  border-radius: 0;
-  margin-bottom: 50px;
+    border-radius: 0;
+    margin-bottom: 50px;
 }
 
-.category_remove span {
-  color: #ff0000;
+.category_remove span, .file_remove span {
+    color: #ff0000;
 }
 
-.category_remove button {
-  border: none;
-  background: none;
+.category_remove button, .file_remove button {
+    border: none;
+    background: none;
 }
 
 .category_remove {
-  display: inline-block;
+    display: inline-block;
 }
 
 ul {
-  list-style-type: square;
+    list-style-type: square;
 }

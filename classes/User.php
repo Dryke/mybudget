@@ -1,55 +1,55 @@
 <?php
-  class User
-  {
-    public $id;
-    public $name;
-    public $password;
-    public $date_add;
-
-    public function register()
+    class User
     {
-      $db = new Db();
-      if(User::nameAvailable($this->name))
-      {
-        if($db->execute('INSERT INTO user(name, password, date_add) VALUES("'.$this->name.'", "'.$this->password.'", NOW())'))
+        public $id;
+        public $name;
+        public $password;
+        public $date_add;
+
+        public function register()
         {
-          return true;
+            $db = new Db();
+            if(User::nameAvailable($this->name))
+            {
+                if($db->execute('INSERT INTO user(name, password, date_add) VALUES("'.$this->name.'", "'.$this->password.'", NOW())'))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
+
+        public static function nameAvailable($name)
         {
-          return false;
+            $db = new Db();
+            if($db->getNumRows('SELECT id FROM user WHERE name = "'.$name.'"') > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
-      }
-      else
-      {
-        return false;
-      }
-    }
 
-    public static function nameAvailable($name)
-    {
-      $db = new Db();
-      if($db->getNumRows('SELECT id FROM user WHERE name = "'.$name.'"') > 0)
-      {
-        return false;
-      }
-      else
-      {
-        return true;
-      }
+        public function login()
+        {
+            $db = new Db();
+            if($user = $db->getRow('SELECT id FROM user WHERE name = "'.$this->name.'" AND password = "'.$this->password.'"'))
+            {
+                return (int) $user->id;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
-
-    public function login()
-    {
-      $db = new Db();
-      if($user = $db->getRow('SELECT id FROM user WHERE name = "'.$this->name.'" AND password = "'.$this->password.'"'))
-      {
-        return (int) $user->id;
-      }
-      else
-      {
-        return false;
-      }
-    }
-  }
 ?>
