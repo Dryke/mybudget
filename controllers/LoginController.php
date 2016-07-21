@@ -1,5 +1,4 @@
 <?php
-    $bad_login = false;
     if(isset($_POST['username']) && isset($_POST['password']))
     {
         $user = new User();
@@ -12,7 +11,11 @@
         }
         else
         {
-            $bad_login = true;
+            $notification = new Notification('danger', 'Error!', 'Bad login or password.');
         }
     }
+
+    require_once('NotificationController.php');
+
+    echo $twig->render('login.html');
 ?>

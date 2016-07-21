@@ -1,0 +1,22 @@
+<form class="col-md-3" method="POST">
+    <input name="name" type="text" id="name" class="form-control" placeholder="Name" required="true" autocomplete="off">
+    <br />
+    <div class="input-group">
+        <input type="text" name="amount" id="amount" class="form-control" aria-label="Amount in &euro;" placeholder="0.00">
+        <span class="input-group-addon">&euro;</span>
+    </div>
+    <br />
+    <label for="id_category">Category</label>
+    <select name="id_category" id="id_category">
+        {% for category in categories %}
+            <option value="{{category.id}}">{{category.name}}</option>
+            {% if category.children is defined %}
+                {% for child in category.children %}
+                    <option value="{{child.id}}">{{child.name}}</option>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </select>
+    <br /><br />
+    <button class="btn btn-medium btn-primary" type="submit" name="submitAddTransaction">Add</button>
+</form>

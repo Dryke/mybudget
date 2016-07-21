@@ -5,7 +5,7 @@ CREATE TABLE `category` (
   `id_parent` int(11) DEFAULT '0',
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO category VALUES
@@ -75,9 +75,21 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL,
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO user VALUES
-("1","louis@mywebshop.org","admin1234","2016-07-18 18:56:53");
+("1","louis@mywebshop.org","admin1234","2016-07-18 18:56:53"),
+("2","azeaze","admin1234","2016-07-20 21:09:40"),
+("3","louis@mywebshop.orgazeaz","admin1234","2016-07-20 21:09:59"),
+("4","louis@mywebshop.orgzae","admin1234","2016-07-21 19:17:19"),
+("5","louis@mywebshop.orgaz","admin1234","2016-07-21 19:24:01"),
+("6","louis@mywebshop.orgaze","admin1234","2016-07-21 19:34:30"),
+("7","louis@mywebshop.orgazeza","admin1234","2016-07-21 19:34:49"),
+("8","louis@mywebshoep.org","admin1234","2016-07-21 19:34:53"),
+("9","louis@mywebshop.orgza","admin1234","2016-07-21 19:39:12"),
+("10","louis@mywebshop.azeorg","admin1234","2016-07-21 19:41:19"),
+("11","rabinovitchlouis@gmze","admin1234","2016-07-21 20:24:37"),
+("12","louis@mywebshop.orgz","admin1234","2016-07-21 20:25:31"),
+("13","louis@mywebsqszhop.org","admin1234","2016-07-21 20:30:10");
 

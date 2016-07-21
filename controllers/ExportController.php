@@ -1,6 +1,4 @@
 <?php
-    $backup_ok = false;
-    $file_removed = false;
     if(isset($_POST['submitExport']))
     {
         $db = new Db();
@@ -9,7 +7,7 @@
             $backup = fopen(__DIR__.'/../backup/backup_'.date("Ymd_His").'.sql', 'w+');
             fwrite($backup, $backup_content);
             fclose($backup);
-            $backup_ok = true;
+            $notification = new Notification('success', 'Success!', 'Dump <a href="/mybudget/backup/backup_'.date("Ymd_His").'.sql">backup.sql</a> created.');
         }
     }
 
@@ -17,7 +15,7 @@
     {
         if(unlink(__DIR__.'/../backup/'.$_POST['file_name']))
         {
-            $file_removed = true;
+            $notification = new Notification('success', 'Success!', 'File removed.');
         }
     }
 
@@ -33,4 +31,10 @@
             $key++;
         }
     }
+
+    require_once('NotificationController.php');
+
+    echo $twig->render($actual_page.'.html', array(
+        'backups' => $backups
+    ));
 ?>

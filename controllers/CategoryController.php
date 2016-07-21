@@ -1,14 +1,11 @@
 <?php
-    $category_add = false;
-    $category_delete = false;
-
     if(isset($_POST['submitDeleteCategory']))
     {
         $category = new Category();
         $category->id = (int)$_POST['id'];
         if($category->delete())
         {
-            $category_delete = true;
+            $notification = new Notification('success', 'Success!', 'Category deleted.');
         }
     }
 
@@ -19,10 +16,14 @@
         $category->id_parent = $_POST['id_parent'];
         if($category->add())
         {
-            $category_add = true;
+            $notification = new Notification('success', 'Success!', 'Category added.');
         }
     }
 
-    $categories = Category::getTree();
-    $main_categories = Category::getMainCategories();
+    require_once('NotificationController.php');
+
+    echo $twig->render($actual_page.'.html', array(
+        'categories' => Category::getTree(),
+        'main_categories' => Category::getMainCategories()
+    ));
 ?>

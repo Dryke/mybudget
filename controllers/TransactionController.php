@@ -1,18 +1,13 @@
 <?php
-    $transaction_add = false;
-    $categories = Category::getTree();
-
     if(isset($_POST['submitAddTransaction']))
     {
-        $amount = (float) $_POST['amount'];
-
         $transaction = new Transaction();
         $transaction->name = $_POST['name'];
         $transaction->id_user = $_SESSION['id_user'];
         $transaction->id_category = $_POST['id_category'];
-        $transaction->amount = abs($amount);
+        $transaction->amount = (float) abs($_POST['amount']);
 
-        if($amount > 0)
+        if($transaction->amount > 0)
         {
             $transaction->sign = 1;
         }
@@ -23,7 +18,13 @@
 
         if($transaction->add())
         {
-            $transaction_add = true;
+            $notification = new Notification('success', 'Success!', 'Transaction added.');
         }
     }
+
+    require_once('NotificationController.php');
+
+    echo $twig->render($actual_page.'.html', array(
+        'categories' => Category::getTree()
+    ));
 ?>

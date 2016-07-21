@@ -1,0 +1,50 @@
+<form class="col-md-3" method="POST">
+    <input name="name" type="text" id="name" class="form-control" placeholder="Name" required="true" autocomplete="off"><br />
+    <label for="id_parent">Parent</label>
+    <select name="id_parent" id="id_parent">
+        <option value="0">None</option>
+        {% for category in main_categories %}
+            <option value="{{category.id}}">{{category.name}}</option>
+        {% endfor %}
+    </select>
+    <br /><br />
+    <button class="btn btn-medium btn-primary" type="submit" name="submitAddCategory">Add</button>
+</form>
+
+<div class="col-md-9">
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Children</th>
+            <th></th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td>{{category.id}}</td>
+                <td>{{category.name}}</td>
+                <td>
+                    {% if category.children is defined %}
+                        <ul>
+                            {% for child in category.children %}
+                                <li>
+                                    {{child.name}}
+                                    <form method="POST" class="category_remove">
+                                        <input type="hidden" name="id" value="{{child.id}}"/>
+                                        <button type="submit" name="submitDeleteCategory"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST" class="category_remove">
+                        <input type="hidden" name="id" value="{{category.id}}"/>
+                        <button type="submit" name="submitDeleteCategory"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
