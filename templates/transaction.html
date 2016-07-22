@@ -6,17 +6,40 @@
         <span class="input-group-addon">&euro;</span>
     </div>
     <br />
-    <label for="id_category">Category</label>
-    <select name="id_category" id="id_category">
+    <select class="form-control" name="id_category" id="id_category">
         {% for category in categories %}
             <option value="{{category.id}}">{{category.name}}</option>
             {% if category.children is defined %}
                 {% for child in category.children %}
-                    <option value="{{child.id}}">{{child.name}}</option>
+                    <option value="{{child.id}}">-- {{child.name}}</option>
                 {% endfor %}
             {% endif %}
         {% endfor %}
     </select>
-    <br /><br />
-    <button class="btn btn-medium btn-primary" type="submit" name="submitAddTransaction">Add</button>
+    <br />
+    <button class="btn btn-medium btn-primary" type="submit" name="submitAddTransaction">Add <i class="fa fa-plus" aria-hidden="true"></i></button>
 </form>
+<div class="col-md-9">
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{transaction.id}}</td>
+                <td>{{transaction.name}}</td>
+                {% if transaction.sign == 0 %}
+                    <td class="transaction_negative"><i class="fa fa-minus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
+                {% else %}
+                    <td class="transaction_positive"><i class="fa fa-plus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
+                {% endif %}
+                <td>{{transaction.category_name}}</td>
+                <td>{{transaction.date_add}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -12,7 +12,7 @@ body .navbar {
     margin-bottom: 50px;
 }
 
-.category_remove span, .file_remove span {
+.category_remove span, .file_remove i {
     color: #ff0000;
 }
 
@@ -27,4 +27,18 @@ body .navbar {
 
 ul {
     list-style-type: square;
+}
+
+.submit_import_db {
+    border: none;
+    color: #21d204;
+    background: none;
+}
+
+.transaction_negative {
+    color: #ec0000;
+}
+
+.transaction_positive {
+    color: #21d204;
 }

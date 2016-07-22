@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `transaction`;
+DROP TABLE IF EXISTS `transaction_auto`;
+DROP TABLE IF EXISTS `user`;
 
 
 CREATE TABLE `category` (
@@ -5,7 +9,7 @@ CREATE TABLE `category` (
   `id_parent` int(11) DEFAULT '0',
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO category VALUES

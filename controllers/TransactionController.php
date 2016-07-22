@@ -25,6 +25,7 @@
     require_once('NotificationController.php');
 
     echo $twig->render($actual_page.'.html', array(
-        'categories' => Category::getTree()
+        'categories' => Category::getTree(),
+        'transactions' => Transaction::getTransactions($id_user)
     ));
 ?>

@@ -10,5 +10,6 @@
     require_once('autoload.php');
     require_once('page_manager.php');
 
+    $db = new Db();
     $notification = new Notification();
 ?>

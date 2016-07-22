@@ -16,6 +16,12 @@
             $db = new Db();
             if($this->id != '')
             {
+                Transaction::resetCategoryAssociation($this->id);
+                $children = $db->getRows('SELECT id FROM category WHERE id_parent = "'.$this->id.'"');
+                foreach($children as $child)
+                {
+                    Transaction::resetCategoryAssociation($child['id']);
+                }
                 $db->execute('DELETE FROM category WHERE id_parent = "'.$this->id.'"');
                 return $db->execute('DELETE FROM category WHERE id = "'.$this->id.'"');
             }

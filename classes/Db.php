@@ -96,6 +96,7 @@
 
         public function getDump()
         {
+            $content = '';
             $mysqli = $this->connect();
             $tables = $mysqli->query('SHOW TABLES');
             while($row = $tables->fetch_row())
@@ -105,18 +106,23 @@
 
             foreach($target_tables as $table)
             {
+                $content .= "DROP TABLE IF EXISTS `".$table."`;\n";
+            }
+
+            foreach($target_tables as $table)
+            {
                 $result = $mysqli->query('SELECT * FROM '.$table);
                 $fields_count = $result->field_count;
                 $rows_num = $mysqli->affected_rows;
-                $res =   $mysqli->query('SHOW CREATE TABLE '.$table);
+                $res = $mysqli->query('SHOW CREATE TABLE '.$table);
                 $table_line = $res->fetch_row();
-                $content = (!isset($content) ?  '' : $content) . "\n\n".$table_line[1].";\n\n";
+                $content = (!isset($content) ?  '' : $content)."\n\n".$table_line[1].";\n\n";
 
                 for($i = 0, $st_counter = 0; $i < $fields_count; $i++, $st_counter=0)
                 {
                     while($row = $result->fetch_row())
                     {
-                        if($st_counter%100 == 0 || $st_counter == 0 )
+                        if($st_counter % 100 == 0 || $st_counter == 0 )
                         {
                             $content .= "\nINSERT INTO ".$table." VALUES";
                         }

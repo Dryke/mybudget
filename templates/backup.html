@@ -1,0 +1,37 @@
+<div class="col-md-3">
+    <form method="POST">
+        <button class="btn btn-medium btn-primary" type="submit" name="submitExport"><i class="fa fa-database" aria-hidden="true"></i> Backup database</button>
+    </form>
+</div>
+<div class="col-md-6">
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Size</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for backup in backups %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{backup.last_edit}}</td>
+                <td>{{backup.file_size}}</td>
+                <td><a href="{{backup.link}}" target="blank"><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="file_name" value="{{backup.name}}"/>
+                        <button class="submit_import_db" type="submit" name="submitImportBackup"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" class="file_remove">
+                        <input type="hidden" name="file_name" value="{{backup.name}}"/>
+                        <button type="submit" name="submitDeleteFile"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
