@@ -7,7 +7,7 @@
         if($id_user = $user->login())
         {
             $_SESSION['id_user'] = $id_user;
-            header('Location: index.php');
+            header('Location: dashboard.html');
         }
         else
         {

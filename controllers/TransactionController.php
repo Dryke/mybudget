@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['submitAddTransaction']))
+    if(isset($_POST['submitAddTransactionIncome']) || isset($_POST['submitAddTransactionOutcome']))
     {
         $transaction = new Transaction();
         $transaction->name = $_POST['name'];
@@ -7,7 +7,7 @@
         $transaction->id_category = $_POST['id_category'];
         $transaction->amount = (float) abs($_POST['amount']);
 
-        if($transaction->amount > 0)
+        if(isset($_POST['submitAddTransactionIncome']))
         {
             $transaction->sign = 1;
         }
@@ -19,6 +19,16 @@
         if($transaction->add())
         {
             $notification = new Notification('success', 'Success!', 'Transaction added.');
+        }
+    }
+
+    if(isset($_POST['submitDeleteTransaction']))
+    {
+        $transaction = new Transaction();
+        $transaction->id = $_POST['id'];
+        if($transaction->delete())
+        {
+            $notification = new Notification('success', 'Success!', 'Transaction deleted.');
         }
     }
 

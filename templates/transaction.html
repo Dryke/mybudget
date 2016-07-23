@@ -1,11 +1,6 @@
 <form class="col-md-3" method="POST">
     <input name="name" type="text" id="name" class="form-control" placeholder="Name" required="true" autocomplete="off">
     <br />
-    <div class="input-group">
-        <input type="text" name="amount" id="amount" class="form-control" aria-label="Amount in &euro;" placeholder="0.00">
-        <span class="input-group-addon">&euro;</span>
-    </div>
-    <br />
     <select class="form-control" name="id_category" id="id_category">
         {% for category in categories %}
             <option value="{{category.id}}">{{category.name}}</option>
@@ -17,7 +12,19 @@
         {% endfor %}
     </select>
     <br />
-    <button class="btn btn-medium btn-primary" type="submit" name="submitAddTransaction">Add <i class="fa fa-plus" aria-hidden="true"></i></button>
+    <div class="input-group">
+        <input type="number" min="0" name="amount" id="amount" class="form-control" aria-label="Amount in &euro;" placeholder="0.00">
+        <span class="input-group-addon">&euro;</span>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-block btn-medium btn-danger col-md-6" type="submit" name="submitAddTransactionOutcome"><i class="fa fa-minus" aria-hidden="true"></i> Outcome</button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-block btn-medium btn-success col-md-6" type="submit" name="submitAddTransactionIncome"><i class="fa fa-plus" aria-hidden="true"></i> Income</button>
+        </div>
+    </div>
 </form>
 <div class="col-md-9">
     <table class="table">
@@ -27,18 +34,27 @@
             <th>Amount</th>
             <th>Category</th>
             <th>Date</th>
+            <th></th>
         </tr>
         {% for transaction in transactions %}
             <tr>
-                <td>{{transaction.id}}</td>
+                <td>{{loop.index}}</td>
                 <td>{{transaction.name}}</td>
                 {% if transaction.sign == 0 %}
                     <td class="outcome"><i class="fa fa-minus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
                 {% else %}
                     <td class="income"><i class="fa fa-plus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
                 {% endif %}
-                <td>{{transaction.category_name}}</td>
+                <td>
+                    {{transaction.category_name}}
+                </td>
                 <td>{{transaction.date_add}}</td>
+                <td>
+                    <form method="POST" class="transaction_remove">
+                        <input type="hidden" name="id" value="{{transaction.id}}"/>
+                        <button type="submit" name="submitDeleteTransaction"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

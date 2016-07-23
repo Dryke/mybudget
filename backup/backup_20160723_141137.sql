@@ -9,7 +9,7 @@ CREATE TABLE `category` (
   `id_parent` int(11) DEFAULT '0',
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO category VALUES
@@ -17,11 +17,12 @@ INSERT INTO category VALUES
 ("20","19","Courses"),
 ("21","0","Revenu"),
 ("22","21","Salaire"),
-("23","21","CAF"),
 ("25","0","Restaurant"),
 ("26","21","Maman"),
 ("27","0","Véhicule"),
-("28","27","Essence");
+("28","27","Essence"),
+("30","0","To be determined"),
+("31","19","Téléphone");
 
 
 
@@ -34,7 +35,7 @@ CREATE TABLE `transaction` (
   `sign` int(1) DEFAULT '0',
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO transaction VALUES
@@ -54,7 +55,10 @@ INSERT INTO transaction VALUES
 ("16","1","28","Er6n","11.14","0","2016-07-18 19:56:42"),
 ("17","1","25","Speedburger","13.50","0","2016-07-18 19:57:18"),
 ("18","1","20","Intermarché","15.54","0","2016-07-18 19:58:43"),
-("19","1","20","Intermarché","28.96","0","2016-07-18 19:59:08");
+("19","1","20","Intermarché","28.96","0","2016-07-18 19:59:08"),
+("20","1","31","SFR","15.00","0","2016-07-23 12:37:53"),
+("21","1","25","Dominos","11.00","0","2016-07-23 12:39:07"),
+("22","1","20","Intermarché","46.29","0","2016-07-23 12:39:26");
 
 
 
@@ -79,7 +83,7 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL,
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO user VALUES
@@ -95,5 +99,6 @@ INSERT INTO user VALUES
 ("10","louis@mywebshop.azeorg","admin1234","2016-07-21 19:41:19"),
 ("11","rabinovitchlouis@gmze","admin1234","2016-07-21 20:24:37"),
 ("12","louis@mywebshop.orgz","admin1234","2016-07-21 20:25:31"),
-("13","louis@mywebsqszhop.org","admin1234","2016-07-21 20:30:10");
+("13","louis@mywebsqszhop.org","admin1234","2016-07-21 20:30:10"),
+("14","Dryke","admin1234","2016-07-23 15:54:57");
 

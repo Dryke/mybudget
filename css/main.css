@@ -12,11 +12,11 @@ body .navbar {
     margin-bottom: 50px;
 }
 
-.category_remove span, .file_remove i {
+.category_remove span, .file_remove i, .transaction_remove i {
     color: #ff0000;
 }
 
-.category_remove button, .file_remove button {
+.category_remove button, .file_remove button, .transaction_remove button {
     border: none;
     background: none;
 }
@@ -63,4 +63,14 @@ ul {
     text-align: center;
     font-weight: bold;
     display: block;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#category .align_middle {
+    vertical-align: middle;
 }

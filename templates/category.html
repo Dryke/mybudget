@@ -1,13 +1,12 @@
 <form class="col-md-3" method="POST">
     <input name="name" type="text" id="name" class="form-control" placeholder="Name" required="true" autocomplete="off"><br />
-    <label for="id_parent">Parent</label>
-    <select name="id_parent" id="id_parent">
-        <option value="0">None</option>
+    <select name="id_parent" id="id_parent" class="form-control">
+        <option value="0">Parent</option>
         {% for category in main_categories %}
             <option value="{{category.id}}">{{category.name}}</option>
         {% endfor %}
     </select>
-    <br /><br />
+    <br />
     <button class="btn btn-medium btn-primary" type="submit" name="submitAddCategory">Add</button>
 </form>
 
@@ -25,20 +24,22 @@
                 <td>{{category.name}}</td>
                 <td>
                     {% if category.children is defined %}
-                        <ul>
+                        <table>
                             {% for child in category.children %}
-                                <li>
-                                    {{child.name}}
-                                    <form method="POST" class="category_remove">
-                                        <input type="hidden" name="id" value="{{child.id}}"/>
-                                        <button type="submit" name="submitDeleteCategory"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                    </form>
-                                </li>
+                                <tr>
+                                    <td>-- {{child.name}}</td>
+                                    <td>
+                                        <form method="POST" class="category_remove">
+                                            <input type="hidden" name="id" value="{{child.id}}"/>
+                                            <button type="submit" name="submitDeleteCategory"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                        </form>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </ul>
+                        </table>
                     {% endif %}
                 </td>
-                <td>
+                <td class="align_middle">
                     <form method="POST" class="category_remove">
                         <input type="hidden" name="id" value="{{category.id}}"/>
                         <button type="submit" name="submitDeleteCategory"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>

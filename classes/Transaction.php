@@ -16,6 +16,12 @@
                 VALUES("'.$this->id_user.'", "'.$this->id_category.'", "'.$this->name.'", "'.$this->amount.'", "'.$this->sign.'", NOW())');
         }
 
+        public function delete()
+        {
+            $db = new Db();
+            return $db->execute('DELETE FROM transaction WHERE id = "'.$this->id.'"');
+        }
+
         public static function resetCategoryAssociation($id_category)
         {
             $db = new Db();
@@ -25,7 +31,7 @@
         public static function getTransactions($id_user)
         {
             $db = new Db();
-            $transactions = $db->getRows('SELECT * FROM transaction WHERE id_user = "'.$id_user.'"');
+            $transactions = $db->getRows('SELECT * FROM transaction WHERE id_user = "'.$id_user.'" ORDER BY date_add DESC');
             foreach($transactions as $key => $transaction)
             {
                 $category = $db->getRow('SELECT name FROM category WHERE id = "'.$transaction['id_category'].'"');
