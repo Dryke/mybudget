@@ -28,10 +28,19 @@
             return $db->execute('UPDATE transaction SET id_category = 0 WHERE id_category = "'.$id_category.'"');
         }
 
-        public static function getTransactions($id_user)
+        public function getTransactions($sign = -1)
         {
             $db = new Db();
-            $transactions = $db->getRows('SELECT * FROM transaction WHERE id_user = "'.$id_user.'" ORDER BY date_add DESC');
+            if($sign == -1)
+            {
+                $sign_query = '';
+            }
+            else
+            {
+                $sign_query = 'AND sign = '.$sign;
+            }
+
+            $transactions = $db->getRows('SELECT * FROM transaction WHERE id_user = "'.$this->id_user.'" '.$sign_query.' ORDER BY date_add DESC');
             foreach($transactions as $key => $transaction)
             {
                 $category = $db->getRow('SELECT name FROM category WHERE id = "'.$transaction['id_category'].'"');

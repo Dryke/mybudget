@@ -18,6 +18,16 @@
             'link' => 'transaction',
             'icon' => 'money'
         );
+        $pages[] = array(
+            'name' => 'Outcomes',
+            'link' => 'outcomes',
+            'icon' => 'arrow-circle-o-up'
+        );
+        $pages[] = array(
+            'name' => 'Incomes',
+            'link' => 'incomes',
+            'icon' => 'arrow-circle-o-down'
+        );
     }
     else
     {
