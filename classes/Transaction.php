@@ -34,9 +34,47 @@
             return $transactions;
         }
 
-        public static function getTopOutcome($id_user)
+        public function getTransactionsByCategory($sign)
         {
             $db = new Db();
+            $transactions_by_category = array();
+            $key = 0;
+            $categories = $db->getRows('SELECT t.id_category, c.name
+                FROM transaction t, category c
+                WHERE id_user = "'.$this->id_user.'"
+                AND t.id_category = c.id
+                AND sign = "'.$sign.'"
+                GROUP BY t.id_category');
+            foreach($categories as $category)
+            {
+                $transaction = $db->getRow('SELECT SUM(amount) AS sum_amount
+                    FROM transaction
+                    WHERE id_user = "'.$this->id_user.'"
+                    AND id_category = "'.$category['id_category'].'"
+                    AND sign = "'.$sign.'"');
+                $transactions_by_category[$key]['sum_amount'] = $transaction->sum_amount;
+                $transactions_by_category[$key]['name'] = $category['name'];
+                $key++;
+            }
+            return $transactions_by_category;
+        }
+
+        public function getTotalTransactions($sign)
+        {
+            $db = new Db();
+            $total_transaction = $db->getRow('SELECT SUM(amount) AS sum_amount
+                FROM transaction
+                WHERE id_user = "'.$this->id_user.'"
+                AND sign = "'.$sign.'"');
+            return $total_transaction->sum_amount;
+        }
+
+        public function getBalance()
+        {
+            $db = new Db();
+            $incomes = $db->getRow('SELECT SUM(amount) AS sum_amount FROM transaction WHERE id_user = "'.$this->id_user.'" AND sign = 1');
+            $outcomes = $db->getRow('SELECT SUM(amount) AS sum_amount FROM transaction WHERE id_user = "'.$this->id_user.'" AND sign = 0');
+            return $incomes->sum_amount - $outcomes->sum_amount;
         }
     }
 ?>

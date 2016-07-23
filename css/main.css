@@ -35,10 +35,32 @@ ul {
     background: none;
 }
 
-.transaction_negative {
+.outcome {
     color: #ec0000;
 }
 
-.transaction_positive {
+.income {
     color: #21d204;
+}
+
+#dashboard h2 {
+    text-align: center;
+}
+
+.title_transaction {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#dashboard h1 {
+    text-align: center;
+}
+
+.title_balance {
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    display: block;
 }

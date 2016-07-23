@@ -1,32 +1,81 @@
-<div class="col-md-6">
-    <canvas id="myChart" width="400" height="400"></canvas>
+<div class="row">
+    <div class="col-md-6">
+        <canvas id="pie_outcome" width="400" height="400"></canvas>
+        <h2>Total outcomes</h2>
+        <span class="title_transaction"><i class="fa fa-minus" aria-hidden="true"></i> {{total_outcomes}} &euro;</span>
+    </div>
+    <div class="col-md-6 pull-right">
+        <canvas id="pie_income" width="400" height="400"></canvas>
+        <h2>Total incomes</h2>
+        <span class="title_transaction"><i class="fa fa-plus" aria-hidden="true"></i> {{total_incomes}} &euro;</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Balance</h1>
+        <span class="title_balance">
+            {% if balance > 0 %}
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            {% else %}
+                <i class="fa fa-minus" aria-hidden="true"></i>
+            {% endif %}
+            {{balance}}
+            &euro;
+        </span>
+    </div>
 </div>
 <script>
-var ctx = document.getElementById("myChart");
-// For a pie chart
-var data = {
-    labels: [
-        "Red",
-        "Blue",
-        "Yellow"
-    ],
-    datasets: [
-        {
-            data: [300, 50, 100],
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
-};
-var myPieChart = new Chart(ctx,{
-    type: 'pie',
-    data: data,
-});
+    var pie_outcomes = document.getElementById("pie_outcome");
+    var data = {
+        labels: [
+            {% for outcome_bycategory in outcomes_by_category %}
+                "{{outcome_bycategory.name}}",
+            {% endfor %}
+        ],
+        datasets: [
+            {
+                data: [
+                    {% for outcome_bycategory in outcomes_by_category %}
+                        "{{outcome_bycategory.sum_amount}}",
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }
+        ]
+    };
+    var myPieChart = new Chart(pie_outcomes,{
+        type: 'pie',
+        data: data,
+    });
+
+    var pie_incomes = document.getElementById("pie_income");
+    var data = {
+        labels: [
+            {% for income_bycategory in incomes_by_category %}
+                "{{income_bycategory.name}}",
+            {% endfor %}
+        ],
+        datasets: [
+            {
+                data: [
+                    {% for income_bycategory in incomes_by_category %}
+                        "{{income_bycategory.sum_amount}}",
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }
+        ]
+    };
+    var myPieChart = new Chart(pie_incomes,{
+        type: 'pie',
+        data: data,
+    });
 </script>

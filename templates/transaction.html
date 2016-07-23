@@ -33,9 +33,9 @@
                 <td>{{transaction.id}}</td>
                 <td>{{transaction.name}}</td>
                 {% if transaction.sign == 0 %}
-                    <td class="transaction_negative"><i class="fa fa-minus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
+                    <td class="outcome"><i class="fa fa-minus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
                 {% else %}
-                    <td class="transaction_positive"><i class="fa fa-plus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
+                    <td class="income"><i class="fa fa-plus" aria-hidden="true"></i> {{transaction.amount}} &euro;</td>
                 {% endif %}
                 <td>{{transaction.category_name}}</td>
                 <td>{{transaction.date_add}}</td>
