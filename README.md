@@ -1,13 +1,16 @@
-# mybudget
-1) Composer
+# Install
+- Composer
 https://getcomposer.org/Composer-Setup.exe
 cmd composer in mybudget/
 
-2) composer require "twig/twig:~1.0"
+- composer require "twig/twig:~1.0"
 
-# To do
+- create database "mybudget"
 
-# general
+- run install_sql.php
+
+# Todo
+## General
 - handle 404
 - handle $_POST security
 - forgot password
@@ -15,7 +18,7 @@ cmd composer in mybudget/
 - convertPrice
 - convertDate
 
-# dashboard
+## Dashboard
 - tab annual
     - pie income
     - pie outcome
@@ -29,7 +32,7 @@ cmd composer in mybudget/
 - tab balance
     - graph with balance of every month
 
-# incomes
+## Incomes
 - listing incomes
     - filter by category, date, name, amount > < =
 
@@ -39,7 +42,7 @@ cmd composer in mybudget/
 
 - graph with incomes of every month by category
 
-# outcomes
+## Outcomes
 - listing outcomes
     - filter by category, date, name, amount > < =
 
@@ -49,5 +52,5 @@ cmd composer in mybudget/
 
 - graph with outcomes of every month by category
 
-# transactions
+## Transactions
 - filter by category, date, name, amount > < =
