@@ -13,8 +13,13 @@
     </select>
     <br />
     <div class="input-group">
-        <input type="number" min="0" name="amount" id="amount" class="form-control" aria-label="Amount in &euro;" placeholder="0.00">
-        <span class="input-group-addon">&euro;</span>
+        <input type="date" name="date_add" id="date_add" class="form-control" value="{{date_now}}">
+        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+    </div>
+    <br />
+    <div class="input-group">
+        <input type="number" step="any" min="0" name="amount" id="amount" class="form-control" aria-label="Amount in &euro;" placeholder="0.00">
+        <span class="input-group-addon"><i class="fa fa-eur" aria-hidden="true"></i></span>
     </div>
     <br />
     <div class="row">

@@ -9,6 +9,8 @@ cmd composer in mybudget/
 
 - run install_sql.php
 
+- make sure you have /cache/ and /backup/
+
 # Todo
 ## General
 - handle 404
@@ -17,6 +19,7 @@ cmd composer in mybudget/
 - dashboard without being connected
 - convertPrice
 - convertDate
+- new notification design
 
 ## Dashboard
 - tab annual
@@ -31,6 +34,8 @@ cmd composer in mybudget/
 
 - tab balance
     - graph with balance of every month
+
+- if user not connected, show random datas for charts
 
 ## Incomes
 - listing incomes

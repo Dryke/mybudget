@@ -6,6 +6,15 @@
         $transaction->id_user = $_SESSION['id_user'];
         $transaction->id_category = $_POST['id_category'];
         $transaction->amount = (float) abs($_POST['amount']);
+        if($_POST['date_add'] == '')
+        {
+            $transaction->date_add = date('Y-m-d');
+        }
+        else
+        {
+            $transaction->date_add = $_POST['date_add'];
+        }
+
 
         if(isset($_POST['submitAddTransactionIncome']))
         {
@@ -36,6 +45,7 @@
 
     echo $twig->render($actual_page.'.html', array(
         'categories' => Category::getTree(),
-        'transactions' => Transaction::getTransactions($id_user)
+        'transactions' => Transaction::getTransactions($id_user),
+        'date_now' => date('Y-m-d')
     ));
 ?>

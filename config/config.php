@@ -10,6 +10,12 @@
     require_once('autoload.php');
     require_once('page_manager.php');
 
+    // Sort the array by "sum_amount" for Transaction
+    function sort_sum_amount($a, $b)
+    {
+        return $b['sum_amount'] - $a['sum_amount'];
+    }
+
     $db = new Db();
     $notification = new Notification();
 ?>
